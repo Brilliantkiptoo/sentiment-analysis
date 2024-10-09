@@ -2,19 +2,14 @@ import streamlit as st
 import numpy as np
 from gensim.models.doc2vec import Doc2Vec
 from tensorflow.keras.models import load_model
+from nltk.tokenize import word_tokenize
 import nltk
 import requests
 from bs4 import BeautifulSoup
 import re
 
-# Try to download NLTK data, but provide a fallback if it fails
-try:
-    nltk.download('punkt', quiet=True)
-    from nltk.tokenize import word_tokenize
-except LookupError:
-    st.warning("NLTK data download failed. Using a simple tokenizer as fallback.")
-    def word_tokenize(text):
-        return text.lower().split()
+# Download NLTK data
+nltk.download('punkt', quiet=True)
 
 # Load the pre-trained models
 @st.cache_resource
