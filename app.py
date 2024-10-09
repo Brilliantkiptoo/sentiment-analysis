@@ -1,15 +1,20 @@
+import nltk
+
+# Set NLTK data path
+nltk.data.path.append('/home/vscode/nltk_data')
+
+# Import other libraries
 import streamlit as st
 import numpy as np
 from gensim.models.doc2vec import Doc2Vec
 from tensorflow.keras.models import load_model
 from nltk.tokenize import word_tokenize
-import nltk
 import requests
 from bs4 import BeautifulSoup
 import re
 
 # Download NLTK data
-nltk.download('punkt', quiet=True)
+# nltk.download('punkt', quiet=True)
 
 # Load the pre-trained models
 @st.cache_resource
