@@ -8,12 +8,8 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
-# Download NLTK 'punkt' tokenizer if it's not present
-try:
-    nltk.data.find('tokenizers/punkt')
-except LookupError:
-    st.info("Downloading NLTK 'punkt' tokenizer...")
-    nltk.download('punkt')
+# Download NLTK data
+nltk.download('punkt', quiet=True)
 
 # Load the pre-trained models
 @st.cache_resource
@@ -92,3 +88,4 @@ if st.button("Analyze Sentiment"):
                 st.write(text[:1000] + "..." if len(text) > 1000 else text)
     else:
         st.warning("Please enter some text or a URL to analyze.")
+
