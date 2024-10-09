@@ -42,24 +42,25 @@ def extract_text_from_url(url):
         return None
 
 def predict_sentiment(text):
-    # Tokenize the text
-    tokens = word_tokenize(text.lower())
-    
+    # Tokenize the text using a basic split
+    tokens = text.lower().split()
+
     # Generate document vector
     doc_vector = doc2vec_model.infer_vector(tokens)
-    
+
     # Reshape for LSTM input
     lstm_input = doc_vector.reshape(1, -1, 1)
-    
+
     # Predict using LSTM model
     prediction = lstm_model.predict(lstm_input)
-    
+
     # Get the predicted class
     predicted_class = np.argmax(prediction)
-    
+
     # Map class to sentiment
     sentiment_map = {0: "Negative", 1: "Neutral", 2: "Positive"}
     return sentiment_map[predicted_class], prediction[0]
+
 
 st.title("Financial News Sentiment Analysis")
 
