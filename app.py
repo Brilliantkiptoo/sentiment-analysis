@@ -2,17 +2,19 @@ import streamlit as st
 import numpy as np
 from gensim.models.doc2vec import Doc2Vec
 from tensorflow.keras.models import load_model
-from nltk.tokenize import word_tokenize
+import nltk
 import requests
 from bs4 import BeautifulSoup
 import re
-import nltk
-nltk.data.path.append('./nltk_data')
-nltk.download('punkt', quiet=True)
 
-
-# Download NLTK data
-nltk.download('punkt', quiet=True)
+# Try to download NLTK data, but provide a fallback if it fails
+try:
+    nltk.download('punkt', quiet=True)
+    from nltk.tokenize import word_tokenize
+except LookupError:
+    st.warning("NLTK data download failed. Using a simple tokenizer as fallback.")
+    def word_tokenize(text):
+        return text.lower().split()
 
 # Load the pre-trained models
 @st.cache_resource
@@ -91,4 +93,3 @@ if st.button("Analyze Sentiment"):
                 st.write(text[:1000] + "..." if len(text) > 1000 else text)
     else:
         st.warning("Please enter some text or a URL to analyze.")
-
