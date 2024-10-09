@@ -1,7 +1,7 @@
 import nltk
 
 # Set NLTK data path
-nltk.data.path.append('/home/vscode/nltk_data')
+nltk.data.path.append('/nltk_data')
 
 # Import other libraries
 import streamlit as st
