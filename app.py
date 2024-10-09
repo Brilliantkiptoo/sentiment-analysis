@@ -3,10 +3,13 @@ import numpy as np
 from gensim.models.doc2vec import Doc2Vec
 from tensorflow.keras.models import load_model
 from nltk.tokenize import word_tokenize
-import nltk
 import requests
 from bs4 import BeautifulSoup
 import re
+import nltk
+nltk.data.path.append('./nltk_data')
+nltk.download('punkt', quiet=True)
+
 
 # Download NLTK data
 nltk.download('punkt', quiet=True)
