@@ -1,0 +1,10 @@
+streamlit
+numpy
+gensim
+tensorflow
+nltk
+requests
+beautifulsoup4
+lxml
+pandas
+plotly
