@@ -8,12 +8,12 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
-# Check if the NLTK 'punkt' tokenizer is available, if not, download it
+# Download NLTK 'punkt' tokenizer if it's not present
 try:
     nltk.data.find('tokenizers/punkt')
 except LookupError:
-    st.info("Downloading the NLTK 'punkt' tokenizer...")
-    nltk.download('punkt', quiet=True)
+    st.info("Downloading NLTK 'punkt' tokenizer...")
+    nltk.download('punkt')
 
 # Load the pre-trained models
 @st.cache_resource
@@ -81,15 +81,14 @@ if st.button("Analyze Sentiment"):
             
             sentiment, probabilities = predict_sentiment(text)
             
-            if sentiment:
-                st.subheader("Sentiment Analysis Result:")
-                st.write(f"The sentiment of the text is: **{sentiment}**")
-                
-                st.subheader("Sentiment Probabilities:")
-                st.bar_chart({"Negative": probabilities[0], "Neutral": probabilities[1], "Positive": probabilities[2]})
-                
-                if input_type == "URL":
-                    st.subheader("Extracted Text:")
-                    st.write(text[:1000] + "..." if len(text) > 1000 else text)
+            st.subheader("Sentiment Analysis Result:")
+            st.write(f"The sentiment of the text is: **{sentiment}**")
+            
+            st.subheader("Sentiment Probabilities:")
+            st.bar_chart({"Negative": probabilities[0], "Neutral": probabilities[1], "Positive": probabilities[2]})
+            
+            if input_type == "URL":
+                st.subheader("Extracted Text:")
+                st.write(text[:1000] + "..." if len(text) > 1000 else text)
     else:
         st.warning("Please enter some text or a URL to analyze.")
