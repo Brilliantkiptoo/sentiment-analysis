@@ -1,7 +1,5 @@
 import nltk
-
-# Set NLTK data path
-nltk.data.path.append('/nltk_data')
+nltk.data.path.append('nltk_data')
 
 # Import other libraries
 import streamlit as st
@@ -13,8 +11,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
-# Download NLTK data
-# nltk.download('punkt', quiet=True)
+
 
 # Load the pre-trained models
 @st.cache_resource
@@ -42,7 +39,7 @@ def extract_text_from_url(url):
         return None
 
 def predict_sentiment(text):
-    # Tokenize the text using a basic split
+    # Tokenize 
     tokens = text.lower().split()
 
     # Generate document vector
